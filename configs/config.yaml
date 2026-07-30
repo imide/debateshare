@@ -1,0 +1,23 @@
+app:
+  name: debateshare
+  version: 0.0.1
+  debug: false
+  room_ttl: 24h
+  max_file_size: 10 # in mb
+
+server:
+  host: "0.0.0.0"
+  port: 8080
+#  base_url:
+
+database:
+  dsn: postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${POSTGRES_HOST}:${POSTGRES_PORT}/${POSTGRES_DATABASE}
+
+s3:
+  bucket: "debateshare-dev.storage.bucket"
+  endpoint: ${S3_BASE_ENDPOINT}
+  aws_access_key_id: ${AWS_ACCESS_KEY_ID}
+  aws_secret_access_key: ${AWS_SECRET_ACCESS_KEY}
+
+logger:
+  level: info

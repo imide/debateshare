@@ -1,0 +1,36 @@
+services:
+  debateshare-server:
+    build:
+      dockerfile: dev.Dockerfile
+      context: .
+    networks:
+      - debateshare-network
+    ports:
+      - "8080:8080"
+    expose:
+      - "8080"
+    volumes:
+      - ./:/app
+    env_file:
+      - .env
+
+  debateshare-database:
+    container_name: debateshare-database
+    image: postgres:18-alpine
+    restart: always
+    ports:
+      - "5432:5432"
+    networks:
+      - debateshare-network
+    volumes:
+      - debateshare-database-data:/var/lib/postgresql
+    env_file:
+      - .env
+
+volumes:
+  debateshare-database-data:
+    driver: local
+
+networks:
+  debateshare-network:
+    driver: bridge

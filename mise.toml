@@ -1,0 +1,9 @@
+[tools]
+air = "latest"
+go = "1.26"
+golangci-lint = "latest"
+just = "latest"
+node = "26"
+
+[tasks]
+
