@@ -28,3 +28,4 @@ go.work.sum
 
 # Project exclude paths
 /web/dist/
+/build

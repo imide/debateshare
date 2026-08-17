@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { ApiError, createRoom, joinRoom } from '$lib/api';
-	import { pushState } from '$app/navigation';
+	import { goto } from '$app/navigation';
 	import { Card, snackbar, TextFieldOutlined, Button } from 'm3-svelte';
 	import { resolve } from '$app/paths';
 
@@ -15,11 +15,10 @@
 		try {
 			// roomname can be null but for now email is not supported.
 			const room = await createRoom(roomName.trim(), unused);
-			pushState(
+			goto(
 				resolve('/room/[slug]', {
 					slug: room.code
 				}),
-				{}
 			);
 		} catch (e) {
 			snackbar(e instanceof ApiError ? e.message : 'Could not create room');
@@ -37,11 +36,10 @@
 		busy = true;
 		try {
 			const room = await joinRoom(code, unused);
-			pushState(
+			goto(
 				resolve('/room/[slug]', {
 					slug: room.code
 				}),
-				{}
 			);
 		} catch (e) {
 			snackbar(e instanceof ApiError ? e.message : 'Could not join room');
